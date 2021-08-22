@@ -295,7 +295,7 @@ include $(BUILD_SYSTEM)/envsetup.mk
 FIND_LEAVES_EXCLUDES := $(addprefix --prune=, $(SCAN_EXCLUDE_DIRS) .repo .git)
 
 ifneq ($(CUSTOM_BUILD),)
-include vendor/aosp/config/BoardConfig.mk
+include vendor/bubblegum/config/BoardConfig.mk
 endif
 
 # The build system exposes several variables for where to find the kernel
@@ -446,9 +446,9 @@ ifeq (,$(strip $(PDK_FUSION_PLATFORM_ZIP)$(PDK_FUSION_PLATFORM_DIR)))
   _pdk_fusion_search_paths := \
     vendor/pdk/$(TARGET_DEVICE)/$(TARGET_DEVICE)-$(TARGET_BUILD_VARIANT)/platform \
     vendor/pdk/$(TARGET_DEVICE)/$(TARGET_PRODUCT)-$(TARGET_BUILD_VARIANT)/platform \
-    vendor/pdk/$(TARGET_DEVICE)/$(patsubst aosp_%,full_%,$(TARGET_PRODUCT))-$(TARGET_BUILD_VARIANT)/platform \
+    vendor/pdk/$(TARGET_DEVICE)/$(patsubst bubblegum_%,full_%,$(TARGET_PRODUCT))-$(TARGET_BUILD_VARIANT)/platform \
     vendor/pdk/$(TARGET_PRODUCT)/$(TARGET_PRODUCT)-$(TARGET_BUILD_VARIANT)/platform \
-    vendor/pdk/$(TARGET_PRODUCT)/$(patsubst aosp_%,full_%,$(TARGET_PRODUCT))-$(TARGET_BUILD_VARIANT)/platform
+    vendor/pdk/$(TARGET_PRODUCT)/$(patsubst bubblegum_%,full_%,$(TARGET_PRODUCT))-$(TARGET_BUILD_VARIANT)/platform
 
   _pdk_fusion_default_platform_zip := $(strip $(foreach p,$(_pdk_fusion_search_paths),$(wildcard $(p)/platform.zip)))
   ifneq (,$(_pdk_fusion_default_platform_zip))
